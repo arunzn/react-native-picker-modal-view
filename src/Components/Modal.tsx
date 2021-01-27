@@ -95,20 +95,21 @@ export class ModalComponent extends React.PureComponent<IModalProps, IModalState
 					<SafeAreaView style={ModalStyles.container}>
 						{
 							renderSearch ? renderSearch(
-									this.onClose.bind(this), 
-									this.onBackRequest.bind(this)
-								) : (
-								<SearchComponent
-									searchText={searchPlaceholderText}
-									placeholderTextColor={searchInputTextColor}
-									onClose={this.onClose.bind(this)}
-									onBackRequest={this.onBackRequest.bind(this)}
-									forceSelect={requireSelection}
-									setText={(text: string) => this.setText(text)}
-									backButtonDisabled={backButtonDisabled}
-									{...SearchInputProps}
-								/>
-							)
+								this.onClose.bind(this),
+								this.onBackRequest.bind(this),
+								(t) => this.setText(t)
+							) : (
+									<SearchComponent
+										searchText={searchPlaceholderText}
+										placeholderTextColor={searchInputTextColor}
+										onClose={this.onClose.bind(this)}
+										onBackRequest={this.onBackRequest.bind(this)}
+										forceSelect={requireSelection}
+										setText={(text: string) => this.setText(text)}
+										backButtonDisabled={backButtonDisabled}
+										{...SearchInputProps}
+									/>
+								)
 						}
 						<KeyboardAvoidingView style={ModalStyles.keyboardContainer}
 							behavior={Platform.OS === 'ios' ? 'padding' : null}
